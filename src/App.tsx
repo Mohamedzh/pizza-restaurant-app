@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import Navibar from './pages/Navbar';
+import Home from './pages/Home';
+import Checkout from './pages/Checkout';
+import PendingOrder from './pages/PendingOrders'
+import CompletedOrders from './pages/CompletedOrders'
+import { useState } from 'react'
+import Success from './pages/Success';
+
 
 function App() {
+  
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navibar/>
+      <Routes>
+        <Route path="/" element={<Home/>} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/success" element={<Success />} />
+        <Route path='/kitchen/pending' element={<PendingOrder/>}/>
+        <Route path="/kitchen/completed" element={<CompletedOrders/>}/>
+      </Routes>
     </div>
   );
 }

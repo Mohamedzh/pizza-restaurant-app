@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+@font-face {
+  font-family: "Journal";
+  src: local("Journal"),
+   url("./fonts/journal.ttf") format("truetype");
+  font-weight: bold;
+  }

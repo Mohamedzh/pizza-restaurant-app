@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;
+}
 .App {
   text-align: center;
 }
@@ -35,4 +38,68 @@
   to {
     transform: rotate(360deg);
   }
+}
+#mainImage{
+height: 800px;
+width:1350px;
+}
+#home{
+  
+  background-color: black;
+  background-image: url('./Assets/pizzaBackground.jpg');
+  background-size: 1350px;
+  font-family: Journal;
+  font-size: 100px;
+  height: 550px;
+  Color: white;
+}
+#heroImage{
+  height: 421px;
+  width: 600px;
+}
+.menu{
+  height: 90px;
+  width: 90px;
+}
+#cart{
+  height: 35px;
+  width: 35px;
+}
+.vr{
+  opacity: 3px;
+  height:30em;
+}
+
+.checkoutForm{
+  border-bottom: 1px solid;
+}
+
+#sideBar{
+  background-color:rgb(33,37,41);
+  color:white;
+  height: 100vh;
+  font-size: 2.5rem;
+}
+
+.tabs{
+  color: white !important;
+  font-size: 1.5rem !important;
+}
+.nav-pills{
+--bs-nav-pills-link-active-bg: #ffc107 !important;
+--bs-nav-pills-link-active-color: #141619 !important;
+}
+a {
+  text-decoration: none !important;
+}
+.tabs a{
+  color: white !important;
+}
+
+.nav{
+  --bs-nav-link-color: #fd0d0d !important
+}
+
+.navbar-nav{
+  --bs-nav-link-color: #f8f9fa !important;
 }

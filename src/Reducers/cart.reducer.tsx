@@ -11,14 +11,15 @@ const menuReducer = (state = [], action) => {
                 state.splice(y, 1, x)
                 return state;
             } else
-                item.orderQty += 1
+                item.orderQty = 1
             return state = [...state, item];
 
             case "REMOVEFROMCART":
                 let item2 = action.payload
                 let x = state.find(selectedItem => selectedItem.id === item2.id)
                 let y = state.indexOf(x)
-                return state = state.splice(y,1);
+                state.splice(y,1)
+                return state;
 
             case "SETCART":
                 return action.payload

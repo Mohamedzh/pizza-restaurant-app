@@ -1,6 +1,7 @@
 html {
   scroll-behavior: smooth;
 }
+
 .App {
   text-align: center;
 }
@@ -35,16 +36,19 @@ html {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
-#mainImage{
-height: 800px;
-width:1350px;
+
+#mainImage {
+  height: 800px;
+  width: 1350px;
 }
-#home{
-  
+
+#home {
+
   background-color: black;
   background-image: url('./Assets/pizzaBackground.jpg');
   background-size: 1350px;
@@ -53,53 +57,77 @@ width:1350px;
   height: 550px;
   Color: white;
 }
-#heroImage{
+
+#heroImage {
   height: 421px;
   width: 600px;
 }
-.menu{
-  height: 90px;
-  width: 90px;
+
+.menu {
+  height: 130px;
+  width: 130px;
 }
-#cart{
+
+#cart {
   height: 35px;
   width: 35px;
 }
-.vr{
+
+.vr {
   opacity: 3px;
-  height:30em;
+  height: 30em;
 }
 
-.checkoutForm{
-  border-bottom: 1px solid;
+.checkoutForm {
+  border-bottom: 1px solid !important;
 }
 
-#sideBar{
-  background-color:rgb(33,37,41);
-  color:white;
+#sideBar {
+  background-color: rgb(33, 37, 41);
+  color: white;
   height: 100vh;
   font-size: 2.5rem;
 }
 
-.tabs{
+.tabs {
   color: white !important;
   font-size: 1.5rem !important;
 }
-.nav-pills{
---bs-nav-pills-link-active-bg: #ffc107 !important;
---bs-nav-pills-link-active-color: #141619 !important;
+
+.nav-pills {
+  --bs-nav-pills-link-active-bg: #ffc107 !important;
+  --bs-nav-pills-link-active-color: #141619 !important;
 }
+
 a {
   text-decoration: none !important;
 }
-.tabs a{
+
+.tabs a {
   color: white !important;
 }
 
-.nav{
+.nav {
   --bs-nav-link-color: #fd0d0d !important
 }
 
-.navbar-nav{
+.navbar-nav {
   --bs-nav-link-color: #f8f9fa !important;
+}
+
+
+.card.pending {
+  --bs-card-cap-bg: rgb(24, 209, 24) !important;
+  --bs-card-border-color: black !important;
+  /* --bs-card-bg: white !important; */
+}
+
+.card.complete {
+  --bs-card-cap-bg: rgb(0, 0, 0) !important;
+  --bs-card-border-color: black !important;
+  color: white !important;
+}
+
+.card-body.complete {
+  color: rgb(0, 0, 0) !important;
 }

@@ -4,113 +4,126 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import pizzaCard from '../Assets/pizzaCard.png'
 import { removeFromCart, setCart } from '../Actions/cart.actions'
+import { BsTrashFill } from 'react-icons/bs'
+import * as Yup from 'yup'
+import { useFormik } from 'formik'
+
 
 
 
 const Checkout = () => {
   const dispatch = useDispatch()
   const cart = useSelector((state: any) => state.cartReducer)
-  const menu = useSelector((state: any) => state.menuReducer)
   const navigate = useNavigate()
 
-  // const removeFromCart = (id) => {
-  //   let selectedItem = cart.find(item => item.id === id)
-  //       dispatch(removeFromCart(selectedItem))
-  // }
+  const RemoveItem = (item) => {
+    dispatch(removeFromCart(item));
+    dispatch(setCart(cart.filter(carts => carts.id !== item.id)));
+  }
+
+  const formik = useFormik({
+    initialValues: {
+      Name: "",
+      Mobile: "",
+      Address: "",
+      City: "",
+    },
+    onSubmit: (values) => {
+      let x = cart.map(item => item.id)
+      console.log(x)
+      const newOrder = { name: values.Name, mobile: values.Mobile, address: values.Address, city: values.City }
+
+
+    },
+    validationSchema: Yup.object({
+      Name: Yup.string().required("Please enter your name").max(20, "Name is limited to 20 characters"),
+      Mobile: Yup.string().required("Please enter your mobile phone number").max(11, "Mobile number can be 11 numbers only"),
+      Address: Yup.string().required("Please enter your Address"),
+      City: Yup.string().required("Please specify your city")
+    }),
+  });
+
 
   return (
     <div>
       <Row>
         <Col className="m-5">
-          <div>
-            <Form>
-              <Form.Group as={Row} className="mb-3 checkoutForm" controlId="formPlaintextEmail">
-                <Form.Label column sm="2">
-                  Name
-                </Form.Label>
-                <Col sm="10">
-                  <Form.Control plaintext />
-                </Col>
-              </Form.Group>
-              <Form.Group as={Row} className="mb-3 checkoutForm" controlId="formPlaintextEmail">
-                <Form.Label column sm="2">
-                  Mobile
-                </Form.Label>
-                <Col sm="10">
-                  <Form.Control plaintext />
-                </Col>
-              </Form.Group>
-              <Form.Group as={Row} className="mb-3 checkoutForm" controlId="formPlaintextEmail">
-                <Form.Label column sm="2">
-                  Address
-                </Form.Label>
-                <Col sm="10">
-                  <Form.Control plaintext />
-                </Col>
-              </Form.Group>
-              <Form.Group as={Row} className="mb-3 checkoutForm" controlId="formPlaintextEmail">
-                <Form.Label column sm="2">
-                  City
-                </Form.Label>
-                <Col sm="10">
-                  <Form.Control plaintext />
-                </Col>
-              </Form.Group>
+          <div className="mb-3">
+            <Form onSubmit={formik.handleSubmit}>
+
+              <Form.Control onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.Name}
+                plaintext type="text" placeholder="Name" name="Name" className="mb-3 checkoutForm" />
+              {formik.touched.Name && formik.errors.Name ? (
+                <div>{formik.errors.Name}</div>
+              ) : null}
+
+              <Form.Control onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.Mobile}
+                plaintext type="text" placeholder="Mobile" name="Mobile" className="mb-3 checkoutForm" />
+              {formik.touched.Mobile && formik.errors.Mobile ? (
+                <div>{formik.errors.Mobile}</div>
+              ) : null}
+
+              <Form.Control onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.Address}
+                plaintext type="text" placeholder="Address" name="Address" className="mb-3 checkoutForm" />
+              {formik.touched.Address && formik.errors.Address ? (
+                <div>{formik.errors.Address}</div>
+              ) : null}
+
+              <Form.Control onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.City}
+                plaintext type="text" placeholder="City" name="City" className="mb-3 checkoutForm" />
             </Form>
+            {formik.touched.City && formik.errors.City ? (
+              <div>{formik.errors.City}</div>
+            ) : null}
+
           </div>
-          <Link to="/success"><Button className="me-5" variant="danger">Order Now</Button></Link>
+          <Link to="/success"><Button className="me-5" variant="danger" type="submit" onClick={() => formik.handleSubmit}>Order Now</Button></Link>
           <Button variant="outline-secondary" onClick={() => navigate(-1)}>Cancel</Button>
         </Col>
         <Col className="d-inline-flex">
           <div className="vr mt-5">
           </div>
           <div>
-            {React.Children.toArray(cart.map(item =>
-              <Container fluid className="d-inline-flex align-items-center justify-content-center">
-                <Row xs={1} md={2} className="g-4">
-                  {/* {Array.from({ length: 2 }).map((_, idx) => ( */}
-                  <Col>
-                    <Card className="m-3 flex-0" style={{ width: '21rem' }}>
-                      <Card.Body className="d-flex justify-content-evenly">
-                        <Row>
-                          <Col>
-                            <p><Image className="menu" src={pizzaCard}></Image></p>
-                          </Col>
-                          <Col>
-                            <p>
-                              <span>{item.itemName}</span>
-                              <br></br>
-                              <span>{item.ingredients}</span>
-                              <br></br>
-                              <span>{item.price} LE</span>
-                              <br></br>
-                              <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-plus" viewBox="0 0 16 16">
-                                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                                </svg>
-                                <Badge bg="secondary">{item.orderQty}</Badge>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-dash" viewBox="0 0 16 16">
-                                  <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
-                                </svg></span></p>
-                            <Button variant="warning" onClick={
-                              () => {
-                                dispatch(removeFromCart(item));
-                                dispatch(setCart(cart.filter(carts => carts.id !== item.id)));
-                                console.log(cart);
-                              }}><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-trash-fill" viewBox="0 0 16 16">
-                                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
-                              </svg>
-                            </Button>
-                          </Col>
+            <Container fluid className="d-flex flex-column align-items-center justify-content-center">
 
+              {React.Children.toArray(cart.map(item =>
+                <Card className="m-3 flex-0 border-0" style={{ width: '30rem' }}>
+                  <Card.Body className="d-flex justify-content-evenly">
+                    <Row>
+                      <Col>
+                        <p><Image className="menu" src={pizzaCard}></Image></p>
+                      </Col>
+                      <Col>
+                        <h6>{item.name}</h6>
+
+                        <div className="d-flex flex-row">
+                          <h6>Qty: {item.orderQty}</h6>
+                          <Button size="sm" variant="light">+</Button>
+                          <Badge className="mx-2" bg="secondary">{item.orderQty}</Badge>
+                          <Button size="sm" variant="light">-</Button>
+                        </div>
+                        <Row className="d-flex">
+                          <h6>Total LE {item.price * item.orderQty}</h6>
+                          <Button variant="warning" size="sm" onClick={() => RemoveItem(item)}>
+                            <BsTrashFill />
+                          </Button>
                         </Row>
-                      </Card.Body>
-                    </Card>
-                  </Col>
-                  {/* ))} */}
-                </Row>
-              </Container>
-            ))}
+                      </Col>
+
+                    </Row>
+                  </Card.Body>
+                </Card>
+              ))}
+            </Container>
+
           </div>
         </Col>
       </Row>

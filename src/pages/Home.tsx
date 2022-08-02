@@ -2,26 +2,31 @@ import React from 'react'
 import { Nav, Image, Card, Container, Badge, Col, Row, Button } from 'react-bootstrap'
 import pizzaCard from '../Assets/pizzaCard.png'
 import { useSelector, useDispatch } from 'react-redux'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { compose } from 'redux'
 import { GiCakeSlice } from 'react-icons/gi'
 import { GiFullPizza } from 'react-icons/gi'
 import { BiDrink } from 'react-icons/bi'
 import { BsStars } from 'react-icons/bs'
+import { GiHamburger } from 'react-icons/gi'
 import { addToCart } from '../Actions/cart.actions'
 
 const Home = (): JSX.Element => {
     const dispatch = useDispatch()
     const cart = useSelector((state: any) => state.cartReducer)
     const menu = useSelector((state: any) => state.menuReducer)
-    console.log(menu)
-    const [currentSelection, setCurrent] = useState(menu.filter(item => item.popular === true))
-    console.log(currentSelection)
 
-    const handleCurrent = (category) => {
-        if (category === "pizza") { setCurrent(menu.filter(item => item.category === "pizza")) }
-        else if (category === "drinks") { setCurrent(menu.filter(item => item.category === "drinks")) }
-        else if (category === "desserts") { setCurrent(menu.filter(item => item.category === "burger")) }
+    useEffect(() => {setCurrent(menu.filter(item => item.popular === true))}, [menu])
+
+    const [currentSelection, setCurrent] = useState(menu.filter(item => item.popular === true))
+
+
+
+    const handleCurrent = (categoryId) => {
+        if (categoryId === 1) { setCurrent(menu.filter(item => item.category.id === 1)) }
+        else if (categoryId === 6) { setCurrent(menu.filter(item => item.category.id === 6)) }
+        else if (categoryId === 7) { setCurrent(menu.filter(item => item.category.id === 7)) }
+        else if (categoryId === 8) { setCurrent(menu.filter(item => item.category.id === 8)) }
         else { setCurrent(menu.filter(item => item.popular === true)) }
     }
 
@@ -45,13 +50,14 @@ const Home = (): JSX.Element => {
         <div>
             <div id="home" className="mb-3">
                 <p style={{ paddingTop: '100px' }}>Luisi's Pizza<br></br>The best Pizza in town</p>
-                {/* <Image id="heroImage" src={chef}></Image> */}
             </div>
             <Nav className="d-flex justify-content-center fw-bold" id="navHome" variant="pills" defaultActiveKey="link-0"
                 onSelect={(selectedKey) => {
-                    if (selectedKey === "link-1") { handleCurrent('pizza') }
-                    else if (selectedKey === "link-2") { handleCurrent('drinks') }
-                    else if (selectedKey === "link-3") { handleCurrent('desserts') } else { handleCurrent('popular') }
+                    // if (selectedKey === "link-0") { handleCurrent('popular') }
+                    if (selectedKey === "link-1") { handleCurrent(1) }
+                    else if (selectedKey === "link-2") { handleCurrent(8) }
+                    else if (selectedKey === "link-3") { handleCurrent(6) }
+                    else if (selectedKey === "link-4") { handleCurrent(7) } else { handleCurrent('popular') }
                 }}>
                 <Nav.Item>
                     <Nav.Link eventKey="link-0" id="navPopular"><BsStars /> Popular</Nav.Link>
@@ -60,44 +66,43 @@ const Home = (): JSX.Element => {
                     <Nav.Link eventKey="link-1"><GiFullPizza /> Pizza</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="link-2"><BiDrink /> Drinks</Nav.Link>
+                    <Nav.Link eventKey="link-2"><GiHamburger /> Sides</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="link-3">
+                    <Nav.Link eventKey="link-3"><BiDrink /> Drinks</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="link-4">
                         <GiCakeSlice /> Dessert</Nav.Link>
                 </Nav.Item>
             </Nav>
             <div>
-                {React.Children.toArray(currentSelection.map(item =>
-                    <Container fluid className="d-flex flex-row align-items-center justify-content-center">
-                        <Row xs={1} md={2} className="g-4">
-                            {Array.from({ length: 2 }).map((_, idx) => (
-                                <Col>
-                                    <Card className="m-3 flex-1" style={{ width: '21rem' }}>
-                                        <Card.Body className="d-flex justify-content-evenly">
-                                            <Row>
-                                                <Col>
-                                                    <p><Image className="menu" src={pizzaCard}></Image></p>
-                                                </Col>
-                                                <Col>
-                                                    <p>
-                                                        <span>{item.itemName}</span>
-                                                        <br></br>
-                                                        <span>{item.ingredients}</span>
-                                                        <br></br>
-                                                        <span>{item.price} LE</span>
-                                                        <br></br>
-                                                    </p>
-                                                    <span><Button onClick={()=>addCart(item.id)}>Add to cart</Button></span>
-                                                </Col>
-                                            </Row>
-                                        </Card.Body>
-                                    </Card>
-                                </Col>
-                            ))}
-                        </Row>
-                    </Container>
-                ))}
+                <Container fluid className="d-flex flex-wrap justify-content-center">
+                    {React.Children.toArray(currentSelection.map(item =>
+                        // <Row xs={1} md={2} className="g-4">
+                        //     <Col>
+                                <Card className="m-3 flex-1 border-0" style={{ width: '21rem' }}>
+                                    <Card.Body>
+                                        <Row>
+                                            <Col>
+                                                <p><Image className="menu" src={item.imageUrl}></Image></p>
+                                            </Col>
+                                            <Col>
+                                                <p>
+                                                    <h4>{item.name}</h4>
+                                                    <p>{item.description}</p>
+                                                    <h6>Price: {item.price} LE</h6>
+                                                </p>
+                                            </Col>
+                                            <span><Button variant="success" onClick={() => addCart(item.id)}>Add to cart</Button></span>
+                                        </Row>
+                                    </Card.Body>
+                                </Card>
+                        //     </Col>
+                        // </Row>
+                    ))}
+                </Container>
+
             </div>
         </div >
     )

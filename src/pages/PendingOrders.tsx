@@ -46,7 +46,7 @@ const PendingOrders = () => {
                   key="light"
                   text="dark"
                   style={{ width: '18rem' }}
-                  className="m-4"
+                  className="m-4 pending"
                 >
                   <Card.Header>{timestamp}</Card.Header>
                   <Card.Body>

@@ -1,10 +1,6 @@
-export const darkTheme = () => {
+export const setMenu = (menu) => {
     return {
-      type: "DARK_THEME",
-    }
-  }
-  export const lightTheme = () => {
-    return {
-      type: "LIGHT_THEME",
+      type: "SETMENU",
+      payload: menu
     }
   }

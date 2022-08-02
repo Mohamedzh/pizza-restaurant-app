@@ -1,10 +1,9 @@
 import { Action } from "history";
 
-const orderReducer = (state = {}, action) => {
+const orderReducer = (state = [], action) => {
     switch (action.type) {
         case "ADDORDER":
-            let x= action.payload
-           return state= {...state, ...x };
+           return  action.payload;
         default:
             return state;
     }

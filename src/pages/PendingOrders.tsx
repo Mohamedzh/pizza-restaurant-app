@@ -1,17 +1,32 @@
-import React from 'react'
-import { Row, Col, Tab, Nav, TabPane, TabContent, Card } from 'react-bootstrap'
+import React, { useEffect } from 'react'
+import { Row, Col, Tab, Nav, TabPane, TabContent, Card, Container, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
-import { timeStamp } from 'console'
-
+import { useSelector, useDispatch } from 'react-redux'
+import axios from 'axios'
+import { addOrder } from '../Actions/order.actions'
 
 
 const PendingOrders = () => {
+  const dispatch = useDispatch()
+  const orders = useSelector((state: any) => state.orderReducer)
+  useEffect(()=>{  axios.get(`http://localhost:5000/order`).then((response) => {dispatch(addOrder(response.data.orders)) });
+}, [])
+  // console.log(orders)
+  var startTime = new Date('2022/8/02 12:00'); 
+  var endTime = new Date(Date.now())
+  var difference = endTime.getTime() - startTime.getTime();
+  var resultInMinutes = Math.round(difference / 60000);
+  console.log(difference)
+  console.log(resultInMinutes)
 
-  const timestamp = moment().startOf('hour').fromNow();
+  const timestamp = moment().format()
+  // const timestamp = moment().startOf('hour').fromNow();
   // const ts2= Date.now()
   // console.log(moment().diff(ts2, 'hour'))
   // console.log(moment().diff()
+  /** */
+  // {new Intl.DateTimeFormat('en-US', {hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(Date.now())}
 
   // console.log(ts2)
   // console.log(timeStamp)
@@ -41,21 +56,31 @@ const PendingOrders = () => {
           <Col sm={9}>
             <Tab.Content>
               <Tab.Pane eventKey="first">
+              <Container fluid className="d-flex flex-wrap flex-row">
+                {React.Children.toArray(orders.map(order =>
                 <Card
                   bg="light"
                   key="light"
                   text="dark"
                   style={{ width: '18rem' }}
-                  className="m-4 pending"
+                  className="m-2 pending"
                 >
-                  <Card.Header>{timestamp}</Card.Header>
-                  <Card.Body>
-                    <Card.Title>Order </Card.Title>
-                    <Card.Text>
-                     Order details
+                  <Card.Header className="text-end">
+                    <p>{Math.round((new Date(Date.now()).getTime()-new Date(order.createdAt).getTime())/60000)}</p>
+                    <p>{moment(order.createdAt).fromNow()}</p>
+                  </Card.Header>
+                  <Card.Body >
+                    <Card.Text className="text-start">
+                      {order.orderlines.map(line=> 
+                      <p>{line.product.name} Qty: {line.quantity}</p>
+                      
+                      )} 
                     </Card.Text>
                   </Card.Body>
+                  <div className="d-flex justify-content-end m-2"><Button variant="outline-danger"> Order Ready</Button></div>
                 </Card>
+                 ))}
+                 </Container>
               </Tab.Pane>
               <Tab.Pane eventKey="second">
                 Completed Orders

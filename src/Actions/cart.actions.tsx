@@ -19,4 +19,24 @@ export const addToCart = (item) => {
     }
   }
 
+  export const clearCart = (item) => {
+    return {
+      type: "CLEAR_CART",
+      payload: item,
+    }
+  }
+
+  export const incrementCart = (item) => {
+    return {
+      type: "INCREMENT",
+      payload: item,
+    }
+  }
+
+  export const decrementCart = (item) => {
+    return {
+      type: "DECREMENT",
+      payload: item,
+    }
+  }
   

@@ -75,7 +75,7 @@ html {
 
 .vr {
   opacity: 3px;
-  height: 30em;
+  height: 100vh;
 }
 
 .checkoutForm {
@@ -130,4 +130,8 @@ a {
 
 .card-body.complete {
   color: rgb(0, 0, 0) !important;
+}
+.cartPic{
+  height: 70px;
+  width:70px;
 }

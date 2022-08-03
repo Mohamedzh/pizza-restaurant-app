@@ -5,22 +5,40 @@ import moment from 'moment'
 import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
 import { addOrder } from '../Actions/order.actions'
+import Clock from 'react-live-clock';
+
 
 
 const PendingOrders = () => {
+
   const dispatch = useDispatch()
   const orders = useSelector((state: any) => state.orderReducer)
   useEffect(()=>{  axios.get(`http://localhost:5000/order`).then((response) => {dispatch(addOrder(response.data.orders)) });
 }, [])
-  // console.log(orders)
-  var startTime = new Date('2022/8/02 12:00'); 
-  var endTime = new Date(Date.now())
-  var difference = endTime.getTime() - startTime.getTime();
-  var resultInMinutes = Math.round(difference / 60000);
-  console.log(difference)
-  console.log(resultInMinutes)
 
-  const timestamp = moment().format()
+const closeOrder = async (id)=>{
+    try {
+      const newObj={completed: true}
+      const response = await axios.post(`http://localhost:5000/order/${id}`, newObj);
+      console.log(response.data)
+      axios.get(`http://localhost:5000/order`).then((response) => {dispatch(addOrder(response.data.orders))})
+    } catch (e) {
+      console.log(e);
+    };
+}
+
+const pendingOrders = orders.filter(order=> order.completed === false)
+console.log(pendingOrders)
+  // console.log(orders)
+  // var startTime = new Date('2022/8/02 12:00'); 
+  // var endTime = new Date(Date.now())
+  // var difference = endTime.getTime() - startTime.getTime();
+  // var resultInMinutes = Math.round(difference / 60000);
+  // console.log(difference)
+  // console.log(resultInMinutes)
+
+  // console.log(moment().add(10, 'minutes').calendar());      // 08/13/2022
+
   // const timestamp = moment().startOf('hour').fromNow();
   // const ts2= Date.now()
   // console.log(moment().diff(ts2, 'hour'))
@@ -28,11 +46,6 @@ const PendingOrders = () => {
   /** */
   // {new Intl.DateTimeFormat('en-US', {hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(Date.now())}
 
-  // console.log(ts2)
-  // console.log(timeStamp)
-  // const options : any = {
-  //   hour: 'numeric', minute: 'numeric', second: 'numeric',}
-  // console.log(new Intl.DateTimeFormat('en-US', options ).format(ts2));
 
 
   return (
@@ -56,20 +69,21 @@ const PendingOrders = () => {
           <Col sm={9}>
             <Tab.Content>
               <Tab.Pane eventKey="first">
-              <Container fluid className="d-flex flex-wrap flex-row">
-                {React.Children.toArray(orders.map(order =>
+              <Container style={{maxHeight: "90vh", overflow: "auto"}} fluid className="d-flex flex-wrap flex-row">
+                {React.Children.toArray(pendingOrders.map(order =>
                 <Card
                   bg="light"
                   key="light"
                   text="dark"
                   style={{ width: '18rem' }}
-                  className="m-2 pending"
+                  className={"m-2 " + ( (Math.round((new Date(Date.now()).getTime()-new Date(order.createdAt).getTime())/60000)) < 30 ? 'pending' : Math.round((new Date(Date.now()).getTime()-new Date(order.createdAt).getTime())/60000) < 60 ? 'late' : 'veryLate')}
                 >
                   <Card.Header className="text-end">
-                    <p>{Math.round((new Date(Date.now()).getTime()-new Date(order.createdAt).getTime())/60000)}</p>
-                    <p>{moment(order.createdAt).fromNow()}</p>
+                  <Clock format={'HH:mm:ss'} ticking={true} timezone={'Africa/Cairo'} date={(new Date(Date.now()).getTime()-new Date(order.createdAt).getTime()-7200000)}/>
+                    {/* <p>{Math.round((new Date(Date.now()).getTime()-new Date(order.createdAt).getTime())/60000)}</p> */}
+                    {/* <p>{moment(order.createdAt).fromNow()}</p> */}
                   </Card.Header>
-                  <Card.Body >
+                  <Card.Body className="complete">
                     <Card.Text className="text-start">
                       {order.orderlines.map(line=> 
                       <p>{line.product.name} Qty: {line.quantity}</p>
@@ -77,7 +91,7 @@ const PendingOrders = () => {
                       )} 
                     </Card.Text>
                   </Card.Body>
-                  <div className="d-flex justify-content-end m-2"><Button variant="outline-danger"> Order Ready</Button></div>
+                  <div className="d-flex justify-content-end m-2"><Button variant="outline-danger" onClick={()=>closeOrder(order.id)}> Order Ready</Button></div>
                 </Card>
                  ))}
                  </Container>

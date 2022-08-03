@@ -25,22 +25,38 @@ const menuReducer = (state = [], action) => {
             return action.payload
         case "CLEAR_CART":
             return [];
+
         case "INCREMENT":
-            let addedItem = action.payload
-            let incremented = state.find(selectedItem => selectedItem.id === addedItem.id)
-            let addedItemIndex = state.indexOf(incremented)
-            incremented.orderQty += 1
-            state.splice(addedItemIndex, 1, incremented)
-            return state;
+            // return [...state, action.payload]
+            return state.map(item => {
+                if (item.id === action.payload.id) {
+                    return { ...item, orderQty: item.orderQty + 1 }
+                }
+                else { return item }
+            })
+        // let addedItem = action.payload
+        // let incremented = state.find(selectedItem => selectedItem.id === addedItem.id)
+        // let addedItemIndex = state.indexOf(incremented)
+        // incremented.orderQty += 1
+        // state.splice(addedItemIndex, 1, incremented)
+        // return state;
+
         case "DECREMENT":
-            let subItem = action.payload
-            let decremented = state.find(selectedItem => selectedItem.id === subItem.id)
-            let subItemIndex = state.indexOf(decremented)
-            if (decremented.orderQty === 1){return state}
-            else{
-            decremented.orderQty -= 1
-            state.splice(subItemIndex, 1, decremented)}
-            return state;
+            return state.map(item => {
+                if (item.id === action.payload.id && item.orderQty>1) {
+                    return { ...item, orderQty: item.orderQty - 1 }
+                }
+                else { return item }
+            })
+            // let subItem = action.payload
+            // let decremented = state.find(selectedItem => selectedItem.id === subItem.id)
+            // let subItemIndex = state.indexOf(decremented)
+            // if (decremented.orderQty === 1) { return state }
+            // else {
+            //     decremented.orderQty -= 1
+            //     state.splice(subItemIndex, 1, decremented)
+            // }
+            // return state;
         default:
             return state;
     }

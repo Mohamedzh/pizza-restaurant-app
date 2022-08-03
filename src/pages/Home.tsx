@@ -1,6 +1,5 @@
 import React from 'react'
 import { Nav, Image, Card, Container, Badge, Col, Row, Button } from 'react-bootstrap'
-import pizzaCard from '../Assets/pizzaCard.png'
 import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { compose } from 'redux'
@@ -10,6 +9,7 @@ import { BiDrink } from 'react-icons/bi'
 import { BsStars } from 'react-icons/bs'
 import { GiHamburger } from 'react-icons/gi'
 import { addToCart } from '../Actions/cart.actions'
+import {menuTypes} from '../types'
 
 const Home = (): JSX.Element => {
     const dispatch = useDispatch()
@@ -53,7 +53,6 @@ const Home = (): JSX.Element => {
             </div>
             <Nav className="d-flex justify-content-center fw-bold" id="navHome" variant="pills" defaultActiveKey="link-0"
                 onSelect={(selectedKey) => {
-                    // if (selectedKey === "link-0") { handleCurrent('popular') }
                     if (selectedKey === "link-1") { handleCurrent(1) }
                     else if (selectedKey === "link-2") { handleCurrent(8) }
                     else if (selectedKey === "link-3") { handleCurrent(6) }

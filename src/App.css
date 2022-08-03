@@ -85,7 +85,7 @@ html {
 #sideBar {
   background-color: rgb(33, 37, 41);
   color: white;
-  height: 100vh;
+  min-height: 100vh;
   font-size: 2.5rem;
 }
 
@@ -119,6 +119,22 @@ a {
 .card.pending {
   --bs-card-cap-bg: rgb(24, 209, 24) !important;
   --bs-card-border-color: black !important;
+  font-weight: bold;
+  /* --bs-card-bg: white !important; */
+}
+
+.card.late {
+  --bs-card-cap-bg: rgb(235, 182, 8) !important;
+  --bs-card-border-color: black !important;
+  font-weight: bold;
+  /* --bs-card-bg: white !important; */
+}
+
+.card.veryLate {
+  --bs-card-cap-bg: rgb(245, 23, 23) !important;
+  --bs-card-border-color: black !important;
+  color: white !important;
+  font-weight: bold;
   /* --bs-card-bg: white !important; */
 }
 
@@ -130,8 +146,24 @@ a {
 
 .card-body.complete {
   color: rgb(0, 0, 0) !important;
+  font-weight: normal !important;
+
 }
-.cartPic{
+
+.cartPic {
   height: 70px;
-  width:70px;
+  width: 70px;
+}
+
+.errorText {
+  color: red;
+  font-size: small;
+}
+
+#footerImage{
+  height: 20px;
+  width: 20px;
+}
+#footerBtn{
+  margin-right: 350px !important;
 }

@@ -10,6 +10,7 @@ import { useEffect } from 'react'
 import axios from 'axios';
 import Success from './pages/Success';
 import { setMenu } from './Actions/menu.actions';
+import Footer from './pages/Footer'
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route path='/kitchen/pending' element={<PendingOrder />} />
         <Route path="/kitchen/completed" element={<CompletedOrders />} />
       </Routes>
+      <Footer/>
     </div>
   );
 }

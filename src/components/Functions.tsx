@@ -1,11 +1,19 @@
 import React from 'react'
 import { useSelector, useDispatch} from 'react-redux';
 import { removeFromCart, setCart } from '../Actions/cart.actions';
+import {useLocation, useNavigate} from 'react-router-dom'
 
 
 export const Scroll = () => {
-    const element = document.getElementById("navHome");
-    element.scrollIntoView();
+    
+    // if (location.pathname !== '/' ) {
+    //     navigate('/')
+    // }else{
+    window.scrollTo(0, 550);
+}
+
+export const scrollBack=()=>{
+    window.scrollTo(0, 0);
 }
 
 export const subTotal = (cart) => {

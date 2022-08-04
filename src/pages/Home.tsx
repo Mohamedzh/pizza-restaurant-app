@@ -9,12 +9,11 @@ import { BiDrink } from 'react-icons/bi'
 import { BsStars } from 'react-icons/bs'
 import { GiHamburger } from 'react-icons/gi'
 import { addToCart } from '../Actions/cart.actions'
-import {menuTypes} from '../types'
+import {CartType, MenuReducerType, MenuType} from '../types'
 
 const Home = (): JSX.Element => {
     const dispatch = useDispatch()
-    const cart = useSelector((state: any) => state.cartReducer)
-    const menu = useSelector((state: any) => state.menuReducer)
+    const menu = useSelector((state: MenuReducerType) => state.menuReducer)
 
     useEffect(() => {setCurrent(menu.filter(item => item.popular === true))}, [menu])
 
@@ -22,17 +21,17 @@ const Home = (): JSX.Element => {
 
 
 
-    const handleCurrent = (categoryId) => {
-        if (categoryId === 1) { setCurrent(menu.filter(item => item.category.id === 1)) }
-        else if (categoryId === 6) { setCurrent(menu.filter(item => item.category.id === 6)) }
-        else if (categoryId === 7) { setCurrent(menu.filter(item => item.category.id === 7)) }
-        else if (categoryId === 8) { setCurrent(menu.filter(item => item.category.id === 8)) }
+    const handleCurrent = (categoryId:number) => {
+        if (categoryId === 1) { setCurrent(menu.filter(item => item.category!.id === 1)) }
+        else if (categoryId === 6) { setCurrent(menu.filter(item => item.category!.id === 6)) }
+        else if (categoryId === 7) { setCurrent(menu.filter(item => item.category!.id === 7)) }
+        else if (categoryId === 8) { setCurrent(menu.filter(item => item.category!.id === 8)) }
         else { setCurrent(menu.filter(item => item.popular === true)) }
     }
 
-    const addCart = (id) => {
-        let selectedItem = menu.find(item => item.id === id)
-        dispatch(addToCart(selectedItem))
+    const addCart = (id:number) => {
+        let selectedItem: MenuType = menu.find((item: MenuType) => item.id === id)
+        dispatch(addToCart(selectedItem!))
         console.log(selectedItem)
         // return (
         //     <span>
@@ -56,7 +55,7 @@ const Home = (): JSX.Element => {
                     if (selectedKey === "link-1") { handleCurrent(1) }
                     else if (selectedKey === "link-2") { handleCurrent(8) }
                     else if (selectedKey === "link-3") { handleCurrent(6) }
-                    else if (selectedKey === "link-4") { handleCurrent(7) } else { handleCurrent('popular') }
+                    else if (selectedKey === "link-4") { handleCurrent(7) } else { handleCurrent(10) }
                 }}>
                 <Nav.Item>
                     <Nav.Link eventKey="link-0" id="navPopular"><BsStars /> Popular</Nav.Link>
@@ -91,7 +90,7 @@ const Home = (): JSX.Element => {
                                                     <h6>Price: {item.price} LE</h6>
                                                 </p>
                                             </Col>
-                                            <span><Button variant="success" onClick={() => addCart(item.id)}>Add to cart</Button></span>
+                                            <span><Button variant="success" onClick={() => addCart(item.id!)}>Add to cart</Button></span>
                                         </Row>
                                     </Card.Body>
                                 </Card>

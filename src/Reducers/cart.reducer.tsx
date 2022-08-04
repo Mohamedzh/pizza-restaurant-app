@@ -1,13 +1,13 @@
-import { Action } from "history";
+import { CartActionType, CartType, MenuActionType, MenuType } from "../types"
 
-const menuReducer = (state = [], action) => {
+const menuReducer = (state:CartType[] = [], action:MenuActionType) => {
     switch (action.type) {
         case "ADDTOCART":
-            let item = action.payload
+            let item : MenuType = action.payload
             if (state.includes(item)) {
-                let x = state.find(selectedItem => selectedItem.id === item.id)
+                let x: MenuType = state.find((selectedItem:MenuType) => selectedItem.id === item.id)
                 let y = state.indexOf(x)
-                x.orderQty += 1
+                x.orderQty! += 1
                 state.splice(y, 1, x)
                 return state;
             } else
@@ -16,7 +16,7 @@ const menuReducer = (state = [], action) => {
 
         case "REMOVEFROMCART":
             let item2 = action.payload
-            let x = state.find(selectedItem => selectedItem.id === item2.id)
+            let x: MenuType = state.find(selectedItem => selectedItem.id === item2.id)
             let y = state.indexOf(x)
             state.splice(y, 1)
             return state;
@@ -28,9 +28,9 @@ const menuReducer = (state = [], action) => {
 
         case "INCREMENT":
             // return [...state, action.payload]
-            return state.map(item => {
+            return state.map((item:CartType)=> {
                 if (item.id === action.payload.id) {
-                    return { ...item, orderQty: item.orderQty + 1 }
+                    return { ...item, orderQty: item.orderQty! + 1 }
                 }
                 else { return item }
             })
@@ -43,20 +43,20 @@ const menuReducer = (state = [], action) => {
 
         case "DECREMENT":
             return state.map(item => {
-                if (item.id === action.payload.id && item.orderQty>1) {
-                    return { ...item, orderQty: item.orderQty - 1 }
+                if (item.id === action.payload.id && (item.orderQty!) > 1) {
+                    return { ...item, orderQty: item.orderQty! - 1 }
                 }
                 else { return item }
             })
-            // let subItem = action.payload
-            // let decremented = state.find(selectedItem => selectedItem.id === subItem.id)
-            // let subItemIndex = state.indexOf(decremented)
-            // if (decremented.orderQty === 1) { return state }
-            // else {
-            //     decremented.orderQty -= 1
-            //     state.splice(subItemIndex, 1, decremented)
-            // }
-            // return state;
+        // let subItem = action.payload
+        // let decremented = state.find(selectedItem => selectedItem.id === subItem.id)
+        // let subItemIndex = state.indexOf(decremented)
+        // if (decremented.orderQty === 1) { return state }
+        // else {
+        //     decremented.orderQty -= 1
+        //     state.splice(subItemIndex, 1, decremented)
+        // }
+        // return state;
         default:
             return state;
     }

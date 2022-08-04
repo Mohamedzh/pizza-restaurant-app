@@ -1,12 +1,12 @@
 import { OrdersActionType } from "../types";
 
-const orderReducer = (state = [], action:OrdersActionType) => {
+const newOrderReducer = (state = {}, action:OrdersActionType) => {
     switch (action.type) {
-        case "ADDORDER":
+        case "NEWORDER":
            return  action.payload;
         default:
             return state;
     }
 }
 
-export default orderReducer
+export default newOrderReducer

@@ -6,6 +6,7 @@ import axios from 'axios'
 import Clock from 'react-live-clock';
 import { addOrder } from '../Actions/order.actions'
 import moment from 'moment'
+import { OrdersType } from '../types'
 
 const CompletedOrders = () => {
   const dispatch = useDispatch()
@@ -14,18 +15,7 @@ const CompletedOrders = () => {
     axios.get(`http://localhost:5000/order`).then((response) => { dispatch(addOrder(response.data.orders)) });
   }, [])
 
-  const closeOrder = async (id) => {
-    try {
-      const newObj = { completed: true }
-      const response = await axios.post(`http://localhost:5000/order/${id}`, newObj);
-      console.log(response.data)
-      axios.get(`http://localhost:5000/order`).then((response) => { dispatch(addOrder(response.data.orders)) })
-    } catch (e) {
-      console.log(e);
-    };
-  }
-
-  const completedOrders = orders.filter(order => order.completed === true)
+  const completedOrders = orders.filter((order:OrdersType) => order.completed === true)
   console.log(completedOrders)
 
   return (
@@ -52,7 +42,7 @@ const CompletedOrders = () => {
               </Tab.Pane>
               <Tab.Pane eventKey="second">
                 <Container fluid style={{maxHeight: "90vh", overflow: "auto"}} className="d-flex flex-wrap flex-row">
-                  {React.Children.toArray(completedOrders.map(order =>
+                  {React.Children.toArray(completedOrders.map((order:OrdersType) =>
                     <Card
                       bg="light"
                       key="light"

@@ -1,22 +1,24 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Row, Col, Tab, Nav, TabPane, TabContent, Card, Container, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import moment from 'moment'
 import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
 import { addOrder } from '../Actions/order.actions'
 import Clock from 'react-live-clock';
+import {OrdersReducerType} from '../types'
 
 
 
 const PendingOrders = () => {
 
   const dispatch = useDispatch()
-  const orders = useSelector((state: any) => state.orderReducer)
+  const orders = useSelector((state: OrdersReducerType) => state.orderReducer)
+
+  const [pendingOrders3, setPending] = useState(orders.filter(order=> order.completed === false))
   useEffect(()=>{  axios.get(`http://localhost:5000/order`).then((response) => {dispatch(addOrder(response.data.orders)) });
 }, [])
-
-const closeOrder = async (id)=>{
+useEffect(()=>{  setPending(orders.filter(order=> order.completed === false))}, [])
+const closeOrder = async (id: number)=>{
     try {
       const newObj={completed: true}
       const response = await axios.post(`http://localhost:5000/order/${id}`, newObj);
@@ -29,22 +31,6 @@ const closeOrder = async (id)=>{
 
 const pendingOrders = orders.filter(order=> order.completed === false)
 console.log(pendingOrders)
-  // console.log(orders)
-  // var startTime = new Date('2022/8/02 12:00'); 
-  // var endTime = new Date(Date.now())
-  // var difference = endTime.getTime() - startTime.getTime();
-  // var resultInMinutes = Math.round(difference / 60000);
-  // console.log(difference)
-  // console.log(resultInMinutes)
-
-  // console.log(moment().add(10, 'minutes').calendar());      // 08/13/2022
-
-  // const timestamp = moment().startOf('hour').fromNow();
-  // const ts2= Date.now()
-  // console.log(moment().diff(ts2, 'hour'))
-  // console.log(moment().diff()
-  /** */
-  // {new Intl.DateTimeFormat('en-US', {hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(Date.now())}
 
 
 

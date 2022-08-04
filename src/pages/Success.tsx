@@ -10,6 +10,7 @@ const Success = () => {
   const navigate = useNavigate()
   useEffect(()=>{setTimeout(() => {navigate('/')}, 7000)})
   const orders = useSelector((state: any) => state.orderReducer)
+  const currentOrder = useSelector((state: any)=>state.newOrderReducer)
 
     
   return (
@@ -17,7 +18,7 @@ const Success = () => {
       <div className="mt-5">
         <Image src={Checked} style={{ height: '100px', width: '100px' }}></Image>
         <p><h1><strong>Order Placed Successfully</strong></h1></p>
-        <p><h4>Your order reference number is <strong>{orders.orderNo}</strong></h4></p>
+        <p><h4>Your order reference number is <strong>{currentOrder.orderNo}</strong></h4></p>
         <p><h4><strong>You'll be redirected to the home page soon...</strong></h4></p>
       </div>
     </div>

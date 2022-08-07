@@ -18,6 +18,7 @@ export interface MenuActionType {
 
 export interface MenuReducerType {
     menuReducer: MenuType[]
+    cartReducer?: MenuType[]
 }
 export interface CategoryType {
     id: number,
@@ -27,17 +28,17 @@ export interface CategoryType {
     products: []
 }
 
-export interface CartType {
-    category?: CategoryType,
-    name?: string,
-    popular?: boolean,
-    price?: number,
-    description?: string,
-    imageUrl?: string,
-    orderlines?: [],
-    orderQty?: number,
-    id?: number
-}
+// export interface CartType {
+//     category?: CategoryType,
+//     name?: string,
+//     popular?: boolean,
+//     price?: number,
+//     description?: string,
+//     imageUrl?: string,
+//     orderlines?: [],
+//     orderQty?: number,
+//     id?: number
+// }
 
 export interface CartActionType {
     type: string,

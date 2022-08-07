@@ -1,4 +1,4 @@
-import {CartType, MenuType} from '../types'
+import { MenuType} from '../types'
 export const addToCart = (item: MenuType) => {
     return {
       type: "ADDTOCART",
@@ -20,7 +20,7 @@ export const addToCart = (item: MenuType) => {
     }
   }
 
-  export const clearCart = (item: CartType[]) => {
+  export const clearCart = (item: MenuType[]) => {
     return {
       type: "CLEAR_CART",
       payload: item,

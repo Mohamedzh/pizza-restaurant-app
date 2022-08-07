@@ -15,7 +15,6 @@ import Cart from '../components/Cart'
 const Navibar = (): JSX.Element => {
     let location = useLocation();
     const navigate = useNavigate()
-    console.log(location)
     const dispatch = useDispatch()
     const menu = useSelector((state: any) => state.menuReducer);
     const cart = useSelector((state: any) => state.cartReducer);

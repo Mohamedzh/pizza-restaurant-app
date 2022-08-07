@@ -10,7 +10,6 @@ import {FaArrowUp} from 'react-icons/fa'
 const Footer = (): JSX.Element => {
     let location = useLocation();
     const navigate = useNavigate()
-    console.log(location)
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">

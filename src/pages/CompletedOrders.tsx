@@ -22,21 +22,21 @@ const CompletedOrders = () => {
     <div>
       <Tab.Container id="left-tabs-example" defaultActiveKey="second">
 
-        <Row>
-          <Col sm={3}>
+        <Row className="me-0">
+          <Col sm={2}>
             <Nav id="sideBar" variant="pills" className="flex-column">
-              <p className="my-4">
+              <p className="my-4 fs-2">
                 DashBoard
               </p>
               <Nav.Item>
-                <Nav.Link className="tabs" eventKey="first"><Link to="/kitchen/pending">Pending Orders</Link></Nav.Link>
+                <Nav.Link className="tabs fs-5" eventKey="first"><Link to="/kitchen/pending">Pending Orders</Link></Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link className="tabs" eventKey="second">Completed Orders</Nav.Link>
+                <Nav.Link className="tabs fs-5" eventKey="second">Completed Orders</Nav.Link>
               </Nav.Item>
             </Nav>
           </Col>
-          <Col sm={9}>
+          <Col sm={10}>
             <Tab.Content>
               <Tab.Pane eventKey="first">
               </Tab.Pane>

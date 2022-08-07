@@ -3,7 +3,7 @@ import {Button, Container, Card, Image, Badge } from 'react-bootstrap'
 import { useSelector, useDispatch} from 'react-redux';
 import {BsTrashFill} from 'react-icons/bs'
 import {addToCart, decrementCart, setCart, removeFromCart, incrementCart} from '../Actions/cart.actions'
-import { MenuReducerType, CartReducerType, MenuType, CartType } from '../types';
+import { MenuReducerType, CartReducerType, MenuType } from '../types';
 import emptyCart from '../Assets/emptyCart2.png'
 
 
@@ -17,18 +17,18 @@ const Cart = () => {
     useEffect(()=>{console.log(cart)}, [cart])
 
     const increment=(id: number)=>{
-        let selectedItem :MenuType = menu.find((item?: MenuType) => item?.id === id)
+        let selectedItem :any = menu.find((item?: MenuType) => item?.id === id)
         dispatch(incrementCart(selectedItem))
     }
 
     const subCart = (id:number) => {
-        let selectedItem :MenuType = menu.find(item => item.id === id)
+        let selectedItem :any = menu.find((item: any) => item.id === id)
         dispatch(decrementCart(selectedItem))
     }
 
     const RemoveItem = (item:MenuType) => {
         // dispatch(removeFromCart(item));
-        dispatch(setCart(cart.filter(carts => carts.id !== item.id)));
+        dispatch(setCart(cart.filter((carts:any) => carts.id !== item.id)));
     }
 
     if (cart?.length ===0)
@@ -36,7 +36,7 @@ const Cart = () => {
         <h3 id="emptyText" className="mt-3">Your cart is empty</h3></div>)}
     return (
         <div>
-        {React.Children.toArray(cart?.map(food =>
+        {React.Children.toArray(cart?.map((food: any) =>
             <Container fluid className="d-inline-flex align-items-center justify-content-center">
                 <Card className="flex-0 border-0" style={{ width: '21rem' }}>
                     <Card.Body className="d-flex justify-content-evenly"><p><Image className="cartPic" src={food.imageUrl}></Image></p><p>

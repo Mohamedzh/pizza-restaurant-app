@@ -1,11 +1,11 @@
-import { CartActionType, CartType, MenuActionType, MenuType } from "../types"
+import { CartActionType, MenuActionType, MenuType } from "../types"
 
-const menuReducer = (state:CartType[] = [], action:MenuActionType) => {
+const menuReducer = (state:MenuType[] = [], action:MenuActionType) => {
     switch (action.type) {
         case "ADDTOCART":
             let item : MenuType = action.payload
             if (state.includes(item)) {
-                let x: MenuType = state.find((selectedItem:MenuType) => selectedItem.id === item.id)
+                let x: any = state.find((selectedItem:any) => selectedItem.id === item.id)
                 let y = state.indexOf(x)
                 x.orderQty! += 1
                 state.splice(y, 1, x)
@@ -16,7 +16,7 @@ const menuReducer = (state:CartType[] = [], action:MenuActionType) => {
 
         case "REMOVEFROMCART":
             let item2 = action.payload
-            let x: MenuType = state.find(selectedItem => selectedItem.id === item2.id)
+            let x: any = state.find(selectedItem => selectedItem.id === item2.id)
             let y = state.indexOf(x)
             state.splice(y, 1)
             return state;
@@ -28,7 +28,7 @@ const menuReducer = (state:CartType[] = [], action:MenuActionType) => {
 
         case "INCREMENT":
             // return [...state, action.payload]
-            return state.map((item:CartType)=> {
+            return state.map((item:MenuType)=> {
                 if (item.id === action.payload.id) {
                     return { ...item, orderQty: item.orderQty! + 1 }
                 }

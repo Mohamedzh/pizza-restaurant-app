@@ -1,6 +1,6 @@
-import { CartActionType, MenuActionType, MenuType } from "../types"
+import { MenuType } from "../types"
 
-const menuReducer = (state:MenuType[] = [], action:MenuActionType) => {
+const menuReducer = (state:MenuType[] = [], action:any) => {
     switch (action.type) {
         case "ADDTOCART":
             let item : MenuType = action.payload

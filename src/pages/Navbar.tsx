@@ -2,7 +2,6 @@ import { Navbar, Container, Nav, NavDropdown, Image, Button, Modal, Card, Badge,
 import { Link } from 'react-router-dom'
 import cartPic from '../Assets/cart.png'
 import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Scroll } from '../components/Functions'
 import pizzaCard from '../Assets/pizzaCard.png'
@@ -10,14 +9,16 @@ import fork from '../Assets/fork.png'
 import { BiFoodMenu } from 'react-icons/bi'
 import { subTotal } from '../components/Functions'
 import Cart from '../components/Cart'
+import { useAppDispatch, useAppSelector} from '../App/hooks'
+import { MenuType } from '../types'
 
 
 const Navibar = (): JSX.Element => {
     let location = useLocation();
     const navigate = useNavigate()
-    const dispatch = useDispatch()
-    const menu = useSelector((state: any) => state.menuReducer);
-    const cart = useSelector((state: any) => state.cartReducer);
+    const dispatch = useAppDispatch()
+    const menu = useAppSelector((state) => state.menu);
+    const cart = useAppSelector((state) => state.cart);
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -41,7 +42,9 @@ const Navibar = (): JSX.Element => {
                                     <Offcanvas.Title className="text-center">Order Summary</Offcanvas.Title>
                                 </Offcanvas.Header>
                                 <Offcanvas.Body>
+
                                     <Cart/>
+                                    
                                 </Offcanvas.Body>
                                 <Row className="d-flex justify-content-center align-content-center p-2">
                                     <hr></hr>

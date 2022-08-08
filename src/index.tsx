@@ -8,9 +8,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './fonts/journal.ttf'
 import { Provider } from 'react-redux';
 import reducers from './Reducers'
+import {store} from './App/store'
 import { createStore } from 'redux'
 
-const store = createStore(reducers)
+// const store = createStore(reducers)
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

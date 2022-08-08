@@ -1,25 +1,15 @@
 export interface MenuType {
-    category?: CategoryType,
-    name?: string,
-    popular?: boolean,
-    price?: number,
-    description?: string,
-    imageUrl?: string,
+    category: CategoryType,
+    name: string,
+    popular: boolean,
+    price: number,
+    description: string,
+    imageUrl: string,
     orderlines?: []
-    id?: number
+    id: number
     orderQty?: number,
-
 }
 
-export interface MenuActionType {
-    type: string,
-    payload: MenuType
-}
-
-export interface MenuReducerType {
-    menuReducer: MenuType[]
-    cartReducer?: MenuType[]
-}
 export interface CategoryType {
     id: number,
     name: string,
@@ -40,35 +30,27 @@ export interface CategoryType {
 //     id?: number
 // }
 
-export interface CartActionType {
-    type: string,
-    payload: MenuType
-}
 
-export interface CartReducerType {
-    cartReducer: MenuType[]
-}
-
-export interface OrdersType {
-    name: string,
-    address: string,
-    city: string,
-    mobile: number,
-    orderlines: OrderLinesType[],
-    orderNo: number,
-    id: number,
-    completed: boolean,
-    createdAt: Date,
-    updatedAt: Date
+export interface OrderType {
+    name?: string,
+    address?: string,
+    city?: string,
+    mobile?: number,
+    orderlines?: OrderLinesType[],
+    orderNo?: number,
+    id?: number,
+    completed?: boolean,
+    createdAt?: Date,
+    updatedAt?: Date
 }
 
 export interface OrdersActionType {
     type: string,
-    payload: OrdersType
+    payload: OrderType
 }
 
 export interface OrdersReducerType {
-    orderReducer: OrdersType[]
+    orderReducer: OrderType[]
 }
 
 export interface OrderLinesType {
@@ -81,5 +63,6 @@ updatedAt: Date
 }
 
 export interface CheckoutObjectType {
-    number: number
+    id?: number,
+    quantity?: number
 }

@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import { Row, Col, Tab, Nav, TabPane, TabContent, Card, Container, Button } from 'react-bootstrap'
+import { Row, Col, Tab, Nav, TabPane, TabContent } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
-import { addOrder } from '../Actions/order.actions'
-import Clock from 'react-live-clock';
-import { OrdersReducerType } from '../types'
 import { getDate } from '../components/Functions'
 import KitchenCards from '../components/KitchenCards'
+import { useAppDispatch, useAppSelector } from '../App/hooks'
+import { addOrders2 } from '../Redux/orders-slice'
 
 
 
 const PendingOrders = () => {
 
-  const dispatch = useDispatch()
-  const orders = useSelector((state: OrdersReducerType) => state.orderReducer)
+  const dispatch = useAppDispatch()
+  const orders = useAppSelector((state) => state.orders)
 
   const [pendingOrders, setPending] = useState(orders.filter(order => order.completed === false))
   useEffect(() => {
-    axios.get(`http://localhost:5000/order`).then((response) => { dispatch(addOrder(response.data.orders)) });
+    axios.get(`http://localhost:5000/order`).then((response) => { dispatch(addOrders2(response.data.orders)) });
   }, [])
 
   useEffect(() => { setPending(orders.filter(order => order.completed === false)) }, [orders])
@@ -38,7 +36,7 @@ const PendingOrders = () => {
                 <Nav.Link className="tabs fs-5" eventKey="first">Pending Orders</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link className="tabs fs-5" eventKey="second"><Link to="/kitchen/completed">Completed Orders</Link></Nav.Link>
+                <Nav.Link as="p" className="tabs fs-5" eventKey="second"><Link to="/kitchen/completed">Completed Orders</Link></Nav.Link>
               </Nav.Item>
             </Nav>
           </Col>

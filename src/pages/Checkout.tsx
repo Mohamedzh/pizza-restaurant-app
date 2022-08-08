@@ -1,11 +1,11 @@
 import { Row, Col, Container } from 'react-bootstrap'
-import { useSelector } from 'react-redux'
 import Cart from '../components/Cart'
 import { subTotal } from '../components/Functions'
 import CheckOutForm from '../components/CheckOutForm'
+import { useAppSelector } from '../App/hooks'
 
 const Checkout = () => {
-  const cart = useSelector((state: any) => state.cartReducer)
+  const cart = useAppSelector((state) => state.cart)
 
   return (
     <div>

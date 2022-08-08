@@ -1,27 +1,40 @@
 import React from 'react'
 import { Nav, Image, Card, Container, Badge, Col, Row, Button } from 'react-bootstrap'
-import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react'
-import { compose } from 'redux'
 import { GiCakeSlice } from 'react-icons/gi'
 import { GiFullPizza } from 'react-icons/gi'
 import { BiDrink } from 'react-icons/bi'
 import { BsStars } from 'react-icons/bs'
 import { GiHamburger } from 'react-icons/gi'
 import { addToCart } from '../Actions/cart.actions'
-import {MenuReducerType, MenuType} from '../types'
+import { useAppDispatch, useAppSelector } from '../App/hooks'
+import { addToCart2, decrementCart2, incrementCart2 } from '../Redux/cart-slice'
+import { MenuType } from '../types'
+
 
 const Home = (): JSX.Element => {
-    const dispatch = useDispatch()
-    const menu = useSelector((state: MenuReducerType) => state.menuReducer)
+    const dispatch = useAppDispatch()
+    const menu = useAppSelector((state) => state.menu)
 
-    useEffect(() => {setCurrent(menu.filter(item => item.popular === true))}, [menu])
+    // const [isShown, setIsShown] = useState(false);
+    // const increment=(id: number)=>{
+    //     let selectedItem :any = menu.find((item) => item?.id === id)
+    //     dispatch(incrementCart2(selectedItem))
+    // }
+
+    // const subCart = (id:number) => {
+    //     let selectedItem :any = menu.find((item) => item.id === id)
+    //     dispatch(decrementCart2(selectedItem))
+    // }
+
+
+    useEffect(() => { setCurrent(menu.filter(item => item.popular === true)) }, [menu])
 
     const [currentSelection, setCurrent] = useState(menu.filter(item => item.popular === true))
 
 
 
-    const handleCurrent = (categoryId:number) => {
+    const handleCurrent = (categoryId: number) => {
         if (categoryId === 1) { setCurrent(menu.filter(item => item.category!.id === 1)) }
         else if (categoryId === 6) { setCurrent(menu.filter(item => item.category!.id === 6)) }
         else if (categoryId === 7) { setCurrent(menu.filter(item => item.category!.id === 7)) }
@@ -29,11 +42,12 @@ const Home = (): JSX.Element => {
         else { setCurrent(menu.filter(item => item.popular === true)) }
     }
 
-    const addCart = (id:number) => {
+    const addCart = (id: number) => {
         let selectedItem: any = menu.find((item: MenuType) => item.id === id)
-        dispatch(addToCart(selectedItem!))
+        dispatch(addToCart2(selectedItem!))
         console.log(selectedItem)
-    }
+        // setIsShown(true)
+            }
 
     return (
         <div>
@@ -67,23 +81,28 @@ const Home = (): JSX.Element => {
             <div>
                 <Container fluid className="d-flex flex-wrap justify-content-center">
                     {React.Children.toArray(currentSelection.map(item =>
-                                <Card className="m-3 flex-1 border-0" style={{ width: '21rem' }}>
-                                    <Card.Body>
-                                        <Row>
-                                            <Col>
-                                                <p><Image className="menu" src={item.imageUrl}></Image></p>
-                                            </Col>
-                                            <Col>
-                                                <p>
-                                                    <h4>{item.name}</h4>
-                                                    <p>{item.description}</p>
-                                                    <h6>Price: {item.price} LE</h6>
-                                                </p>
-                                            </Col>
-                                            <span><Button variant="success" onClick={() => addCart(item.id!)}>Add to cart</Button></span>
-                                        </Row>
-                                    </Card.Body>
-                                </Card>
+                        <Card className="m-3 flex-1 border-0" style={{ width: '21rem' }}>
+                            <Card.Body>
+                                <Row>
+                                    <Col>
+                                        <p><Image className="menu" src={item.imageUrl}></Image></p>
+                                    </Col>
+                                    <Col>
+                                        <div>
+                                            <h4>{item.name}</h4>
+                                            <p>{item.description}</p>
+                                            <h6>Price: {item.price} LE</h6>
+                                        </div>
+                                    </Col>
+                                    <span><Button variant="success" onClick={() => addCart(item.id!)}>Add to cart</Button></span>
+                                    {/* {isShown && <span>
+                            <Button size="sm" variant="light" onClick={() => increment(item.id!)}>+</Button>
+                            <Badge className="mx-2" bg="secondary">{item.orderQty}</Badge>
+                            <Button size="sm" variant="light" onClick={() => subCart(item.id!)}>-</Button>
+                        </span>} */}
+                                </Row>
+                            </Card.Body>
+                        </Card>
                     ))}
                 </Container>
 

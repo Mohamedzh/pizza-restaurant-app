@@ -1,45 +1,45 @@
 import React, { useState, useEffect } from 'react'
 import {Button, Container, Card, Image, Badge } from 'react-bootstrap'
-import { useSelector, useDispatch} from 'react-redux';
 import {BsTrashFill} from 'react-icons/bs'
-import {addToCart, decrementCart, setCart, removeFromCart, incrementCart} from '../Actions/cart.actions'
-import { MenuReducerType, CartReducerType, MenuType } from '../types';
+import { MenuType } from '../types';
 import emptyCart from '../Assets/emptyCart2.png'
+import { useAppSelector, useAppDispatch } from '../App/hooks';
+import { decrementCart2, incrementCart2, setCart2 } from '../Redux/cart-slice';
 
 
 
 const Cart = () => {
-    const cart = useSelector((state: any) => state.cartReducer)
-    const menu = useSelector((state: MenuReducerType) => state.menuReducer)
+    const cart = useAppSelector((state) => state.cart)
+    const menu = useAppSelector((state) => state.menu)
     const [currentCart, addToCurrent] = useState([])
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
     useEffect(()=>{console.log(cart)}, [cart])
 
     const increment=(id: number)=>{
-        let selectedItem :any = menu.find((item?: MenuType) => item?.id === id)
-        dispatch(incrementCart(selectedItem))
+        let selectedItem :any = menu.find((item) => item?.id === id)
+        dispatch(incrementCart2(selectedItem))
     }
 
     const subCart = (id:number) => {
-        let selectedItem :any = menu.find((item: any) => item.id === id)
-        dispatch(decrementCart(selectedItem))
+        let selectedItem :any = menu.find((item) => item.id === id)
+        dispatch(decrementCart2(selectedItem))
     }
 
     const RemoveItem = (item:MenuType) => {
-        // dispatch(removeFromCart(item));
-        dispatch(setCart(cart.filter((carts:any) => carts.id !== item.id)));
+        dispatch(setCart2(cart.filter((carts) => carts.id !== item.id)));
     }
 
     if (cart?.length ===0)
     {return (<div className="d-flex flex-column justify-content-center"><Image id="emptyCart" className="mx-5"src={emptyCart}></Image>
         <h3 id="emptyText" className="mt-3">Your cart is empty</h3></div>)}
+
     return (
         <div>
-        {React.Children.toArray(cart?.map((food: any) =>
+        {React.Children.toArray(cart?.map((food) =>
             <Container fluid className="d-inline-flex align-items-center justify-content-center">
                 <Card className="flex-0 border-0" style={{ width: '21rem' }}>
-                    <Card.Body className="d-flex justify-content-evenly"><p><Image className="cartPic" src={food.imageUrl}></Image></p><p>
+                    <Card.Body className="d-flex justify-content-evenly"><p><Image className="cartPic" src={food.imageUrl}></Image></p><div>
                         <h6>{food.name}</h6>
                         <span className="mx-2">LE {food.price}</span>
                         <span>
@@ -52,7 +52,7 @@ const Cart = () => {
                                 <Button size="sm" variant="warning" className="ms-2" onClick={() => RemoveItem(food)}><BsTrashFill />
                                 </Button>
                             </span></div>
-                    </p></Card.Body>
+                    </div></Card.Body>
                 </Card>
             </Container>
         ))}

@@ -1,6 +1,6 @@
 # Pizza restaurant app
 
-![Homepage](/src/Assets/pizza2.png)
+![Homepage](/src/Assets/pizza3.png)
 
 ## Table of contents
 * [General info](#general-info)
@@ -12,16 +12,16 @@
 A pizza restaurant app with an online ordering system and a kitchen management dashboard for orders, built using react and node.js
 
 ## Technologies
-* react: 18.2.0,
-* react-icons: 4.4.0,
-* react-router-dom: 6.3.0,
-* react-bootstrap version: 2.4.0,
-* react-live-clock: 6.0.6,
-* redux: 4.2.0,
-* reduxjs/toolkit: 1.8.3,
-* formik: 2.2.9,
+* react: 18.2.0
+* react-icons: 4.4.0
+* react-router-dom: 6.3.0
+* react-bootstrap version: 2.4.0
+* react-live-clock: 6.0.6
+* redux: 4.2.0
+* reduxjs/toolkit: 1.8.3
+* formik: 2.2.9
 * yup: 0.32.11
-* axios: 0.27.2,
+* axios: 0.27.2
 
 ## Functionalities
 * Home page of the restaurant menu with the ability to choose between different menu catagories.
@@ -42,7 +42,6 @@ npm start
 
 ![Homepage](/src/Assets/pizza1.png)
 ##### Cart and Checkout
-![Cart](/src/Assets/pizza3.png)
 ![Cart](/src/Assets/pizza4.png)
 ![Cart](/src/Assets/pizza5.png)
 

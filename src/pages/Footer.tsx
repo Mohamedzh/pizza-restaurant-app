@@ -4,13 +4,11 @@ import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { scrollBack } from '../components/Functions'
 import fork from '../Assets/fork.png'
-import {FaArrowUp} from 'react-icons/fa'
+import { FaArrowUp } from 'react-icons/fa'
 
 
 const Footer = (): JSX.Element => {
-    let location = useLocation();
-    const navigate = useNavigate()
-
+    
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
@@ -21,7 +19,7 @@ const Footer = (): JSX.Element => {
                 <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                     <Nav>
                         <Nav.Link id="footerBtn"><h6>© 2022 Luisi All Rights Reserved</h6></Nav.Link>
-                        <Nav.Link onClick={scrollBack}><h6><FaArrowUp/> Back to top</h6></Nav.Link>
+                        <Nav.Link onClick={scrollBack}><h6><FaArrowUp /> Back to top</h6></Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

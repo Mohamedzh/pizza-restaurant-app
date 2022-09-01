@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction} from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { MenuType } from '../types';
 
 
@@ -14,5 +14,5 @@ const menuSlice = createSlice({
     }
 })
 
-export const{ setMenu2} = menuSlice.actions;
+export const { setMenu2 } = menuSlice.actions;
 export default menuSlice.reducer

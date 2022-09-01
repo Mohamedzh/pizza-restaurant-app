@@ -1,23 +1,18 @@
-import { Navbar, Container, Nav, NavDropdown, Image, Button, Modal, Card, Badge, Form, Offcanvas, Row, Col } from 'react-bootstrap'
+import { Navbar, Container, Nav, Image, Button, Badge, Offcanvas, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import cartPic from '../Assets/cart.png'
-import React, { useState, useEffect } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react'
+import { useLocation } from 'react-router-dom';
 import { Scroll } from '../components/Functions'
-import pizzaCard from '../Assets/pizzaCard.png'
 import fork from '../Assets/fork.png'
 import { BiFoodMenu } from 'react-icons/bi'
 import { subTotal } from '../components/Functions'
 import Cart from '../components/Cart'
-import { useAppDispatch, useAppSelector} from '../App/hooks'
-import { MenuType } from '../types'
+import { useAppSelector } from '../App/hooks'
 
 
 const Navibar = (): JSX.Element => {
     let location = useLocation();
-    const navigate = useNavigate()
-    const dispatch = useAppDispatch()
-    const menu = useAppSelector((state) => state.menu);
     const cart = useAppSelector((state) => state.cart);
 
     const [show, setShow] = useState(false);
@@ -43,8 +38,8 @@ const Navibar = (): JSX.Element => {
                                 </Offcanvas.Header>
                                 <Offcanvas.Body>
 
-                                    <Cart/>
-                                    
+                                    <Cart />
+
                                 </Offcanvas.Body>
                                 <Row className="d-flex justify-content-center align-content-center p-2">
                                     <hr></hr>

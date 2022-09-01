@@ -10,13 +10,15 @@ const Checkout = () => {
   return (
     <div>
       <Row>
-        <CheckOutForm/>
+        <CheckOutForm />
         <Col className="d-inline-flex">
           <div className="vr mt-5">
           </div>
           <Container>
-          <Cart/>
-          <h4 className="text-center mt-2 border-top pt-2">Subtotal = <strong>{subTotal(cart)}</strong></h4>
+            <Cart />
+            <h4 className="text-center mt-2 border-top pt-2">
+              Subtotal = <strong>{subTotal(cart)}</strong>
+            </h4>
           </Container>
         </Col>
       </Row>

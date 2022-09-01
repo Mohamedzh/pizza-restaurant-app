@@ -66,3 +66,11 @@ export interface CheckoutObjectType {
     id?: number,
     quantity?: number
 }
+
+export interface NewOrderObject {
+    name: string
+    address: string
+    city: string
+    mobile: string
+    productIds: CheckoutObjectType[]
+}

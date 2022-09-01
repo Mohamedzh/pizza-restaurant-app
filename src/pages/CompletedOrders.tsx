@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
-import { Row, Col, Tab, Nav, TabPane, TabContent, Card, Container } from 'react-bootstrap'
+import { Row, Col, Tab, Nav, Card, Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import Clock from 'react-live-clock';
 import moment from 'moment'
 import { OrderType } from '../types'
 import { addOrders2 } from '../Redux/orders-slice'

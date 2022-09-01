@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Card, Container, Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Clock from 'react-live-clock';
 import { getDate, closeOrder } from '../components/Functions'
 import { useAppDispatch, useAppSelector } from '../App/hooks'
 import { addOrders2 } from '../Redux/orders-slice'
-
-
-
 
 const KitchenCards = () => {
 

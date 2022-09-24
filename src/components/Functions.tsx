@@ -6,7 +6,7 @@ import { addOrders2 } from '../Redux/orders-slice';
 import { addToCart, clearCart, decrementCart, incrementCart, setCart } from '../Redux/cart-slice';
 import { addNewOrder } from '../Redux/newOrder-slice';
 
-export const Scroll = () => {
+export const scroll = () => {
     window.scrollTo(0, 550);
 }
 
@@ -52,7 +52,7 @@ export const subCart = (id: number, dispatch: Dispatch, menu: MenuType[]) => {
     }
 }
 
-export const RemoveItem = (item: MenuType, dispatch: Dispatch, cart: MenuType[]) => {
+export const removeItem = (item: MenuType, dispatch: Dispatch, cart: MenuType[]) => {
     dispatch(setCart(cart.filter((carts) => carts.id !== item.id)));
 }
 

@@ -3,7 +3,7 @@ import { Button, Container, Card, Image } from 'react-bootstrap'
 import { BsTrashFill } from 'react-icons/bs'
 import emptyCart from '../Assets/emptyCart2.png'
 import { useAppSelector, useAppDispatch } from '../App/hooks';
-import { RemoveItem } from './functions';
+import { removeItem } from './functions';
 import QtyButtons from './qtyButtons'
 
 
@@ -47,7 +47,7 @@ const Cart = () => {
                                             size="sm"
                                             variant="warning"
                                             className="ms-2"
-                                            onClick={() => RemoveItem(food, dispatch, cart)}>
+                                            onClick={() => removeItem(food, dispatch, cart)}>
                                             <BsTrashFill />
                                         </Button>
                                     </span>

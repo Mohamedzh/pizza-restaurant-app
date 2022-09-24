@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import cartPic from '../Assets/cart.png'
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom';
-import { Scroll } from '../components/functions'
+import { scroll } from '../components/functions'
 import fork from '../Assets/fork.png'
 import { BiFoodMenu } from 'react-icons/bi'
 import { subTotal } from '../components/functions'
@@ -27,8 +27,8 @@ const Navibar = (): JSX.Element => {
                 <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                     {location.pathname !== "/kitchen/pending" && location.pathname !== "/kitchen/completed" &&
                         <Nav>
-                            <Nav.Link onClick={Scroll}><BiFoodMenu /> Menu</Nav.Link>
-                            <Nav.Link onClick={Scroll}>
+                            <Nav.Link onClick={scroll}><BiFoodMenu /> Menu</Nav.Link>
+                            <Nav.Link onClick={scroll}>
                                 Most Popular
                             </Nav.Link>
                             <Nav.Link onClick={handleShow}><Image id="cart" src={cartPic}></Image><Badge bg="warning">{cart.length}</Badge></Nav.Link>

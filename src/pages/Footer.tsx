@@ -1,8 +1,7 @@
 import { Navbar, Container, Nav, Image, } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import React from 'react'
-import { useLocation, useNavigate } from 'react-router-dom';
-import { scrollBack } from '../components/Functions'
+import { scrollBack } from '../components/functions'
 import fork from '../Assets/fork.png'
 import { FaArrowUp } from 'react-icons/fa'
 

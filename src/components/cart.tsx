@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from 'react'
-import { Button, Container, Card, Image, Badge } from 'react-bootstrap'
+import React from 'react'
+import { Button, Container, Card, Image } from 'react-bootstrap'
 import { BsTrashFill } from 'react-icons/bs'
 import emptyCart from '../Assets/emptyCart2.png'
 import { useAppSelector, useAppDispatch } from '../App/hooks';
-import { RemoveItem } from './Functions';
-import QtyButtons from './QtyButtons'
+import { RemoveItem } from './functions';
+import QtyButtons from './qtyButtons'
 
 
 
 const Cart = () => {
-    const cart = useAppSelector((state) => state.cart)
-    const menu = useAppSelector((state) => state.menu)
-    const [currentCart, addToCurrent] = useState([])
+    const cart = useAppSelector(state => state.cart)
     const dispatch = useAppDispatch()
 
     if (cart?.length === 0) {
@@ -24,7 +22,10 @@ const Cart = () => {
     return (
         <div>
             {cart?.map((food, idx) =>
-                <Container key={idx} fluid className="d-inline-flex align-items-center justify-content-center">
+                <Container
+                    key={idx}
+                    fluid
+                    className="d-inline-flex align-items-center justify-content-center">
                     <Card className="flex-0 border-0" style={{ width: '21rem' }}>
                         <Card.Body className="d-flex justify-content-evenly">
                             <p>
@@ -42,11 +43,17 @@ const Cart = () => {
                                 <div className="mt-1">
                                     <span className="mx-2">
                                         Subtotal LE {food.price! * food.orderQty!}
-                                        <Button size="sm" variant="warning" className="ms-2" onClick={() => RemoveItem(food, dispatch, cart)}><BsTrashFill />
+                                        <Button
+                                            size="sm"
+                                            variant="warning"
+                                            className="ms-2"
+                                            onClick={() => RemoveItem(food, dispatch, cart)}>
+                                            <BsTrashFill />
                                         </Button>
                                     </span>
                                 </div>
-                            </div></Card.Body>
+                            </div>
+                        </Card.Body>
                     </Card>
                 </Container>
             )}

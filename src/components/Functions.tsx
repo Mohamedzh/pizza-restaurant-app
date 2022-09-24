@@ -57,7 +57,7 @@ export const RemoveItem = (item: MenuType, dispatch: Dispatch, cart: MenuType[])
 }
 
 export const addCart = (id: number, dispatch: Dispatch, menu: MenuType[]) => {
-    let selectedItem: any = menu.find((item: MenuType) => item.id === id)
+    let selectedItem = menu.find((item: MenuType) => item.id === id)
     dispatch(addToCart(selectedItem!))
 }
 
@@ -75,12 +75,12 @@ export const handleCurrent = (
 
 export const postData = async (dispatch: Dispatch, newOrder: NewOrderObject) => {
     try {
-      const response = await axios.post(`http://localhost:5000/order`, newOrder);
-      console.log(response.data.newOrder.orderNo)
-      console.log(response.data.newOrder.id)
-      dispatch(addNewOrder(response.data.newOrder))
-      dispatch(clearCart())
+        const response = await axios.post(`http://localhost:5000/order`, newOrder);
+        console.log(response.data.newOrder.orderNo)
+        console.log(response.data.newOrder.id)
+        dispatch(addNewOrder(response.data.newOrder))
+        dispatch(clearCart())
     } catch (e) {
-      console.log(e);
+        console.log(e);
     };
-  }
+}

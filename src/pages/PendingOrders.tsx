@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Row, Col, Tab, Nav } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import KitchenCards from '../components/KitchenCards'
+import KitchenCards from '../components/kitchenCards'
 import { useAppDispatch, useAppSelector } from '../App/hooks'
 import { addOrders2 } from '../Redux/orders-slice'
 

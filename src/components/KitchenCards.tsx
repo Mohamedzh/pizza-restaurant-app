@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Card, Container, Button } from 'react-bootstrap'
 import axios from 'axios'
 import Clock from 'react-live-clock';
-import { getDate, closeOrder } from '../components/Functions'
+import { getDate, closeOrder } from './functions'
 import { useAppDispatch, useAppSelector } from '../App/hooks'
 import { addOrders2 } from '../Redux/orders-slice'
 

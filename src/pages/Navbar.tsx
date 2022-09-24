@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 import cartPic from '../Assets/cart.png'
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom';
-import { Scroll } from '../components/Functions'
+import { Scroll } from '../components/functions'
 import fork from '../Assets/fork.png'
 import { BiFoodMenu } from 'react-icons/bi'
-import { subTotal } from '../components/Functions'
-import Cart from '../components/Cart'
+import { subTotal } from '../components/functions'
+import Cart from '../components/cart'
 import { useAppSelector } from '../App/hooks'
 
 

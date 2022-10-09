@@ -8,11 +8,11 @@ const menuSlice = createSlice({
     name: 'menu',
     initialState,
     reducers: {
-        setMenu2(state, action: PayloadAction<MenuType[]>) {
+        setMenu(state, action: PayloadAction<MenuType[]>) {
             return state = action.payload
         }
     }
 })
 
-export const { setMenu2 } = menuSlice.actions;
+export const { setMenu } = menuSlice.actions;
 export default menuSlice.reducer

@@ -1,6 +1,6 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import Navibar from './pages/navbar';
+import NavBar from './components/navbar';
 import Home from './pages/home';
 import Checkout from './pages/checkout';
 import PendingOrder from './pages/pendingOrders'
@@ -10,7 +10,7 @@ import axios from 'axios';
 import Success from './pages/success';
 import Footer from './pages/footer'
 import { useAppDispatch } from './App/hooks'
-import { setMenu2 } from './Redux/menu-slice'
+import { setMenu } from './Redux/menu-slice'
 
 
 function App() {
@@ -18,13 +18,13 @@ function App() {
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_BASE_URL}/product`)
-      .then((response) => { dispatch(setMenu2(response.data.products)) }
+      .then((response) => { dispatch(setMenu(response.data.products)) }
       )
   }, [])
 
   return (
     <div className="App">
-      <Navibar />
+      <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/:id" element={<Home />} />

@@ -7,11 +7,11 @@ import { scroll } from '../lib/functions'
 import fork from '../Assets/fork.png'
 import { BiFoodMenu } from 'react-icons/bi'
 import { subTotal } from '../lib/functions'
-import Cart from '../components/cart'
+import Cart from './cart'
 import { useAppSelector } from '../App/hooks'
 
 
-const Navibar = (): JSX.Element => {
+const NavBar = (): JSX.Element => {
     let location = useLocation();
     const cart = useAppSelector((state) => state.cart);
 
@@ -61,4 +61,4 @@ const Navibar = (): JSX.Element => {
         </Navbar>
     )
 }
-export default Navibar
+export default NavBar

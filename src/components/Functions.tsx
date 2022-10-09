@@ -30,9 +30,8 @@ export const getDate = (order: OrderType) => {
 
 export const closeOrder = async (id: number, dispatch: Dispatch) => {
     try {
-        const response = await axios.patch(`http://localhost:5000/order/${id}`);
-        console.log(response.data)
-        axios.get(`http://localhost:5000/order`).then((response) => { dispatch(addOrders2(response.data.orders)) })
+        const response = await axios.patch(`${process.env.REACT_APP_BASE_URL}/order/${id}`);
+        axios.get(`${process.env.REACT_APP_BASE_URL}/order`).then((response) => { dispatch(addOrders2(response.data.orders)) })
     } catch (e) {
         console.log(e);
     };
@@ -75,9 +74,7 @@ export const handleCurrent = (
 
 export const postData = async (dispatch: Dispatch, newOrder: NewOrderObject) => {
     try {
-        const response = await axios.post(`http://localhost:5000/order`, newOrder);
-        console.log(response.data.newOrder.orderNo)
-        console.log(response.data.newOrder.id)
+        const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/order`, newOrder);
         dispatch(addNewOrder(response.data.newOrder))
         dispatch(clearCart())
     } catch (e) {

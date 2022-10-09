@@ -11,7 +11,7 @@ const CompletedOrders = () => {
   const dispatch = useAppDispatch()
   const orders = useAppSelector((state) => state.orders)
   useEffect(() => {
-    axios.get(`http://localhost:5000/order`)
+    axios.get(`${process.env.REACT_APP_BASE_URL}/order`)
       .then((response) => { dispatch(addOrders2(response.data.orders)) });
   }, [])
 

@@ -9,7 +9,6 @@ import { useEffect, useState } from 'react'
 import axios from 'axios';
 import Success from './pages/Success';
 import Footer from './pages/Footer'
-import { createClient } from '@supabase/supabase-js'
 import { useAppDispatch } from './App/hooks'
 import { setMenu2 } from './Redux/menu-slice'
 
@@ -18,8 +17,9 @@ function App() {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    axios.get('http://localhost:5000/product')
-      .then((response) => { dispatch(setMenu2(response.data.products)) })
+    axios.get(`${process.env.REACT_APP_BASE_URL}/product`)
+      .then((response) => { dispatch(setMenu2(response.data.products)) }
+      )
   }, [])
 
   return (

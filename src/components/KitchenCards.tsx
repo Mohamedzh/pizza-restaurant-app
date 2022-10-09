@@ -13,7 +13,7 @@ const KitchenCards = () => {
 
     const [pendingOrders, setPending] = useState(orders.filter(order => order.completed === false))
     useEffect(() => {
-        axios.get(`http://localhost:5000/order`).then((response) => { dispatch(addOrders2(response.data.orders)) });
+        axios.get(`${process.env.REACT_APP_BASE_URL}/order`).then((response) => { dispatch(addOrders2(response.data.orders)) });
     }, [])
 
     useEffect(() => { setPending(orders.filter(order => order.completed === false)) }, [orders])

@@ -1,14 +1,14 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import Navibar from './pages/Navbar';
-import Home from './pages/Home';
-import Checkout from './pages/Checkout';
-import PendingOrder from './pages/PendingOrders'
-import CompletedOrders from './pages/CompletedOrders'
+import Navibar from './pages/navbar';
+import Home from './pages/home';
+import Checkout from './pages/checkout';
+import PendingOrder from './pages/pendingOrders'
+import CompletedOrders from './pages/completedOrders'
 import { useEffect, useState } from 'react'
 import axios from 'axios';
-import Success from './pages/Success';
-import Footer from './pages/Footer'
+import Success from './pages/success';
+import Footer from './pages/footer'
 import { useAppDispatch } from './App/hooks'
 import { setMenu2 } from './Redux/menu-slice'
 

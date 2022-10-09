@@ -5,7 +5,7 @@ import { AiOutlineMinus } from 'react-icons/ai'
 import { useDispatch } from 'react-redux'
 import { useAppSelector } from '../App/hooks'
 import { MenuType } from '../types'
-import { increment, subCart } from './functions'
+import { increment, subCart } from '../lib/functions'
 
 
 type Props = {

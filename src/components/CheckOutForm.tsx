@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 import { useFormik } from 'formik'
 import { useAppDispatch, useAppSelector } from '../App/hooks'
 import { CheckoutObjectType } from '../types'
-import { postData } from './functions'
+import { postData } from '../lib/functions'
 
 
 const CheckoutForm = () => {

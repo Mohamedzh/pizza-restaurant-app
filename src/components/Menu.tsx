@@ -3,7 +3,7 @@ import { Image, Card, Container, Badge, Col, Row, Button } from 'react-bootstrap
 import { useDispatch } from 'react-redux'
 import { useAppSelector } from '../App/hooks'
 import { MenuType } from '../types'
-import { addCart, increment, subCart } from './functions'
+import { addCart, increment, subCart } from '../lib/functions'
 import { AiOutlinePlus } from 'react-icons/ai'
 import { AiOutlineMinus } from 'react-icons/ai'
 

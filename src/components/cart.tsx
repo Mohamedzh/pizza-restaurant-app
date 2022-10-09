@@ -3,7 +3,7 @@ import { Button, Container, Card, Image } from 'react-bootstrap'
 import { BsTrashFill } from 'react-icons/bs'
 import emptyCart from '../Assets/emptyCart2.png'
 import { useAppSelector, useAppDispatch } from '../App/hooks';
-import { removeItem } from './functions';
+import { removeItem } from '../lib/functions';
 import QtyButtons from './qtyButtons'
 
 

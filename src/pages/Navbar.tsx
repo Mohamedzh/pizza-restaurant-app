@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 import cartPic from '../Assets/cart.png'
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom';
-import { scroll } from '../components/functions'
+import { scroll } from '../lib/functions'
 import fork from '../Assets/fork.png'
 import { BiFoodMenu } from 'react-icons/bi'
-import { subTotal } from '../components/functions'
+import { subTotal } from '../lib/functions'
 import Cart from '../components/cart'
 import { useAppSelector } from '../App/hooks'
 

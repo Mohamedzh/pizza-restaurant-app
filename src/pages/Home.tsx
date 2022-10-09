@@ -8,7 +8,7 @@ import { BsStars } from 'react-icons/bs'
 import { GiHamburger } from 'react-icons/gi'
 import { useAppSelector } from '../App/hooks'
 import { MenuType } from '../types'
-import { handleCurrent } from '../components/functions'
+import { handleCurrent } from '../lib/functions'
 import Menu from '../components/menu'
 
 

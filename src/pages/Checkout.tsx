@@ -1,6 +1,6 @@
 import { Row, Col, Container } from 'react-bootstrap'
 import Cart from '../components/cart'
-import { subTotal } from '../components/functions'
+import { subTotal } from '../lib/functions'
 import CheckOutForm from '../components/checkoutForm'
 import { useAppSelector } from '../App/hooks'
 

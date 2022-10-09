@@ -13,7 +13,7 @@ import { useAppDispatch } from './App/hooks'
 import { setMenu } from './Redux/menu-slice'
 
 
-function App() {
+const App = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -27,7 +27,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/:id" element={<Home />} />
+        {/* <Route path="/:id" element={<Home />} /> */}
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/success" element={<Success />} />
         <Route path='/kitchen/pending' element={<PendingOrder />} />

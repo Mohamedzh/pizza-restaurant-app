@@ -28,9 +28,9 @@ const Home = (): JSX.Element => {
             <Nav className="d-flex justify-content-center fw-bold" id="navHome" variant="pills" defaultActiveKey="link-0"
                 onSelect={(selectedKey) => {
                     if (selectedKey === "link-1") { handleCurrent(1, menu, setCurrent) }
-                    else if (selectedKey === "link-2") { handleCurrent(8, menu, setCurrent) }
-                    else if (selectedKey === "link-3") { handleCurrent(6, menu, setCurrent) }
-                    else if (selectedKey === "link-4") { handleCurrent(7, menu, setCurrent) } else { handleCurrent(10, menu, setCurrent) }
+                    else if (selectedKey === "link-2") { handleCurrent(4, menu, setCurrent) }
+                    else if (selectedKey === "link-3") { handleCurrent(2, menu, setCurrent) }
+                    else if (selectedKey === "link-4") { handleCurrent(3, menu, setCurrent) } else { handleCurrent(10, menu, setCurrent) }
                 }}>
                 <Nav.Item>
                     <Nav.Link eventKey="link-0" id="navPopular"><BsStars /> Popular</Nav.Link>

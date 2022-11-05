@@ -66,9 +66,9 @@ export const handleCurrent = (
     setCurrent: React.Dispatch<React.SetStateAction<MenuType[]>>
 ) => {
     if (categoryId === 1) { setCurrent(menu.filter(item => item.category!.id === 1)) }
-    else if (categoryId === 2) { setCurrent(menu.filter(item => item.category!.id === 2)) }
-    else if (categoryId === 3) { setCurrent(menu.filter(item => item.category!.id === 3)) }
-    else if (categoryId === 4) { setCurrent(menu.filter(item => item.category!.id === 4)) }
+    else if (categoryId === 6) { setCurrent(menu.filter(item => item.category!.id === 2)) }
+    else if (categoryId === 7) { setCurrent(menu.filter(item => item.category!.id === 3)) }
+    else if (categoryId === 8) { setCurrent(menu.filter(item => item.category!.id === 4)) }
     else { setCurrent(menu.filter(item => item.popular === true)) }
 }
 
